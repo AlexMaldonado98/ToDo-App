@@ -8,6 +8,7 @@ import { Task } from '../types';
 export const ToDo = () => {
     const [tasks, setTasks] = useState<Array<Task>>([]);
     const [filter, setFilter] = useState<"all" | "active" | "complete">('all');
+    
     useEffect(() => {
         if(localStorage.getItem('todoStorage') === null){
             return;
