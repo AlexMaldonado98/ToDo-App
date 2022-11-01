@@ -1,6 +1,6 @@
 import React from "react";
 import { Task } from "../types";
-export const TaskList = ({ tasks,toggleComplete, deleteTask,filter }: {filter:string, tasks: Array<Task>,toggleComplete: (e:number) => void,deleteTask:(e:number) => void}) => {
+export const TaskList = ({ tasks,toggleComplete, deleteTask,filter }: {filter:string, tasks: Array<Task>,toggleComplete: (e:Task) => void,deleteTask:(e:number) => void}) => {
     let c:Array<Task>;
     if(filter === 'active'){
         c = tasks.filter(i => i.complete === false);
@@ -14,7 +14,7 @@ export const TaskList = ({ tasks,toggleComplete, deleteTask,filter }: {filter:st
         <div className="TASKS">
             {c.map(item => (
                 <div className="taskList" key={item.id}>
-                    <input defaultChecked={item.complete} onChange={() => toggleComplete(item.id)} type="checkbox" />
+                    <input defaultChecked={item.complete} onChange={() => toggleComplete(item)} type="checkbox" />
                     <p className={item.complete ? 'completed' : ''} key={item.id}>{item.text}</p>
                     <button onClick={() => deleteTask(item.id)} className="buttonDelete" type="button" >X</button>
                 </div>

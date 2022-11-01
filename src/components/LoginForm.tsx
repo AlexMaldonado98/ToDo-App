@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import login from "../services/login";
+import userServices from '../services/user';
 
-export const LoginForm = ({handleUserLogin}:{handleUserLogin: (user:{token:string,username:string}) => void}) => {
+export const LoginForm = ({handleUserLogin, notif}:{handleUserLogin: (user:{token:string,username:string}) => void,notif:(e:string) => void}) => {
     const [inputValues, setInputValues] = useState({ username: '', password: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,8 +14,19 @@ export const LoginForm = ({handleUserLogin}:{handleUserLogin: (user:{token:strin
             event.preventDefault();
             const response = await login(inputValues);
             handleUserLogin(response);
-        } catch (error) {
-            console.log(error);
+        } catch (error:any) {
+            notif(`[ERROR] ${error.response.data.error}`);
+        }
+    };
+
+    const handleCreateUser = async () => {
+        try {
+            const response = await userServices.createUser(inputValues);
+            if(response.username){
+                notif('User created');
+            }
+        } catch (error:any) {
+            notif(`[ERROR] ${error.response.data.error}`);
         }
     };
 
@@ -28,6 +40,7 @@ export const LoginForm = ({handleUserLogin}:{handleUserLogin: (user:{token:strin
                 <input className="inputForm" type="text" name="password" onChange={(e) => handleChange(e)} />
             </div>
             <div className="buttonsForm">
+                <button type="button" onClick={() => handleCreateUser()} >Create user</button>
                 <button>Login</button>
             </div>
         </form>
