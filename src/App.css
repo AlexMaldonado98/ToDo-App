@@ -1,38 +1,181 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  --primary-color: hsl(235, 35%, 28%);
+  --text-primary-color: hsl(0, 0%, 98%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html{
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  height: 100vh;
+  position: relative;
+}
+
+.header-app{
+  height: 30%;
+  background-image: url('../public/font-todo.jfif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.footer-app{
+  height: 70%;
+  background-color: rgb(22, 26, 51);
+}
+
+.ToDo{
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-inline: auto;
+  width: 80%;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.head{
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+.head > p{
+  margin-bottom: 20px;
+  color: var(--text-primary-color);
+  font-weight: 800;
+}
+
+.body{
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.taskForm{
+  background-color: var(--primary-color) ;
   display: flex;
-  flex-direction: column;
+  border-radius: 5px 5px 5px 5px;
+  overflow: hidden;
+}
+.taskForm > button{
+  color: var(--text-primary-color);
+  background-color: var(--primary-color) ;
+  background-color: transparent;
+  padding: 5px 5px;
+  border: none;
+  border-right: 1px solid gray;
+  width: 30%;
+}
+.taskForm > input{
+  color: var(--text-primary-color);
+  background-color: transparent;
+  padding: 5px 5px;
+  border: 1px solid gray;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+}
+
+.taskForm > input::placeholder{
+  color: rgb(218, 220, 223);
+  box-shadow: none;
+}
+
+
+
+.TASKS{
+  max-height: 400PX;
+  overflow: scroll;
+}
+
+.taskList{
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: var(--primary-color);
+  padding: 10px 10px;
+  color: var(--text-primary-color);
+  font-size: 14px;
+  border-bottom: 1px solid gray;
 }
 
-.App-link {
-  color: #61dafb;
+.taskList > p {
+  max-width: 90%;
+  overflow: scroll;
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.completed{
+  text-decoration: line-through;
+} 
+
+.taskList > input {
+  color: red;
+}
+
+.taskList > button{
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  color: hsl(0, 0%, 98%);
+  background-color: transparent;
+  border: none;
+}
+
+
+.footer-comp{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10px;
+  background-color: var(--primary-color);
+  color: var(--text-primary-color);
+  font-size: 13px;
+  height: 40px;
+}
+
+.footer-comp > button{
+  color: var(--text-primary-color);
+  font-size: 10px;
+  max-width: 80px;
+  background-color: transparent;
+  border: none;
+}
+.footer-filter{
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.filter{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.filter > button{
+  background-color: var(--primary-color);
+  width: 33.33%;
+  border: none;
+  height: 40px;
+  color: var(--text-primary-color);
+}
+
+@media (min-width:375px) {
+  .TASKS, .taskList > p{
+    overflow:auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  .ToDo{
+    max-width: 600px;
   }
+
 }
